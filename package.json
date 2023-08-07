@@ -1,0 +1,16 @@
+{
+  "name": "binance-leaderboard-line-notification",
+  "version": "1.0.0",
+  "description": "notification from top trader on binance",
+  "main": "index.js",
+  "repository": "https://github.com/NuttakitDW/binance-leaderboard-line-notification.git",
+  "author": "Nuttakit Kundum",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "dotenv": "^16.3.1",
+    "node-cron": "^3.0.2",
+    "typescript": "^5.1.6",
+    "unirest": "^0.6.0"
+  }
+}
