@@ -3,14 +3,12 @@ const getTrader = require("../data/gettrader");
 const Trader = require("../entity/trader");
 
 /**
- * @param {string} name
+ * @param {Trader} trader
+ * @param {Position[]} positions
  * @returns {string}
  */
-async function generateMessage(name) {
+async function generateMessage(trader, positions) {
   try {
-    const trader = await getTrader(name);
-    const positions = await getPosition(trader.encryptedUid);
-
     let msg = "Positions-USDⓈ-M\n\n"
     for (let i = 0; i < positions.length; i++) {
       const symbol = positions[i].symbol
