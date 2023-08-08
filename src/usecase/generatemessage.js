@@ -1,5 +1,7 @@
 const getPosition = require("../data/getposition");
 const getTrader = require("../data/gettrader");
+const unixTimeToLocalThaiDateTime = require("../usecase/thaitime");
+const timeAgoFromUnixTimestamp = require("../usecase/timediff");
 const Trader = require("../entity/trader");
 
 /**
@@ -37,38 +39,6 @@ async function generateMessage(trader, positions) {
     return msg;
   } catch (error) {
     console.error(error);
-  }
-}
-
-function unixTimeToLocalThaiDateTime(unixTimestamp) {
-  const date = new Date(unixTimestamp); // Convert Unix timestamp to milliseconds
-
-  const options = {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: false,
-    timeZone: "Asia/Bangkok",
-  };
-
-  return date.toLocaleString("th-TH", options);
-}
-
-function timeAgoFromUnixTimestamp(unixTimestamp) {
-  const now = Date.now() / 1000; // Convert current time to Unix timestamp in seconds
-  const diffInSeconds = Math.floor(now - unixTimestamp/1000);
-
-  if (diffInSeconds >= 3600) {
-    const diffInHours = Math.floor(diffInSeconds / 3600);
-    return `${diffInHours} hr${diffInHours > 1 ? 's' : ''} ago`;
-  } else if (diffInSeconds >= 60) {
-    const diffInMinutes = Math.floor(diffInSeconds / 60);
-    return `${diffInMinutes} min${diffInMinutes > 1 ? 's' : ''} ago`;
-  } else {
-    return `${diffInSeconds} sec${diffInSeconds !== 1 ? 's' : ''} ago`;
   }
 }
 
