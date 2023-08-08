@@ -2,7 +2,7 @@ const axios = require('axios');
 require("dotenv").config();
 
 const channelAccessToken = process.env.LINE_CHANNEL_ACCESS_TOKEN;
-function sendMessage(msg) {
+function pushMessage(msg) {
   const headers = {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${channelAccessToken}`,
@@ -28,4 +28,4 @@ function sendMessage(msg) {
     });
 }
 
-module.exports = sendMessage;
+module.exports = pushMessage;
