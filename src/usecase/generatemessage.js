@@ -34,6 +34,7 @@ async function generateMessage(name) {
       msg += `PNL (ROE %): ${pnl.toFixed(2)} USD (${roe.toFixed(2)}%)\n`
       msg += `Time: ${dateTime} (${timeAgo})\n\n`      
     }
+    msg += "Disclaimer: This is information – not financial advice or recommendation.\n"
     msg += `Powered By Nuttakit Kundum - 2023`
     return msg;
   } catch (error) {

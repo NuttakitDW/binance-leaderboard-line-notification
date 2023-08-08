@@ -1,11 +1,18 @@
 const getPosition = require('../data/getposition');
 const generateMessage = require('../usecase/generatemessage');
+const sendMessage = require('./notification')
 require("dotenv").config();
 
 async function startWorker() {
   const name = process.env.TRADER
   const msg = await generateMessage(name)
-  console.log(msg)
+  sendMessage(msg)
+  .then((response) => {
+    console.log('Response:', response);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
 }
 
 // Set the interval to 1000 milliseconds (1 second)
