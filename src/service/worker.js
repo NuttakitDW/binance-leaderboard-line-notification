@@ -1,3 +1,4 @@
+const getInfo = require("../data/getinfo");
 const getPosition = require("../data/getposition");
 const getTrader = require("../data/gettrader");
 const generateMessage = require("../usecase/generatemessage");
@@ -10,22 +11,26 @@ async function startWorker() {
 
   const trader = await getTrader(name);
   const positions = await getPosition(trader.encryptedUid);
+  const info = await getInfo(trader.encryptedUid)
+
+  if(!info.positionShared) {
+    const msg = `${name} no longer share position.`
+    console.log(msg);
+    pushMessage(msg)
+    return
+  }
 
   console.log(positions);
   if (positions === null) {
     const now = Date.now()
     const thNow = unixTimeToLocalThaiDateTime(now)
-    console.log("trader doesn't have any position yet.");
+    console.log(`${name} doesn't have any position yet.`);
     console.log(thNow);
   } else {
+
     const msg = await generateMessage(trader, positions);
     pushMessage(msg)
-      .then((response) => {
-        console.log("Response:", response);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    return
   }
 }
 

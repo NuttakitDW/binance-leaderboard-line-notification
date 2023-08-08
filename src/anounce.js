@@ -1,15 +1,8 @@
-const startWorker = require('./service/worker');
 const pushMessage = require('./service/pushmessage')
-
+require("dotenv").config();
 
 async function main() {
-    const msg = ""
-    pushMessage(msg)
-      .then((response) => {
-        console.log("Response:", response);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    const msg = process.env.ANNOUNCE
+    pushMessage(msg);
 }
 main();
