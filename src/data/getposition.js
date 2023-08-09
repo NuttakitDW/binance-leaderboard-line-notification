@@ -1,5 +1,6 @@
 const axios = require("axios");
 const Position = require("../entity/position");
+const Status = require("../constant/enum");
 require("dotenv").config();
 
 /**
@@ -7,6 +8,7 @@ require("dotenv").config();
  * @returns {Position[]}
  */
 async function getPosition(uid) {
+  console.log("getPosition")
   const options = {
     method: "GET",
     url: process.env.POSITION_URL,
@@ -35,6 +37,7 @@ async function getPosition(uid) {
       const pos = resPositions[i]
 
       const symbol = pos.symbol;
+      const status = Status.OPEN;
       const entryPrice = pos.entryPrice;
       const markPrice = pos.markPrice;
       const pnl = pos.pnl;
@@ -46,9 +49,11 @@ async function getPosition(uid) {
       const leverage = pos.leverage;
 
       const tradeStartUnix = pos.updateTimeStamp;
+      const updatedTime = Date.now();
 
       const position = new Position(
         symbol,
+        status,
         entryPrice,
         markPrice,
         pnl,
@@ -58,7 +63,8 @@ async function getPosition(uid) {
         long,
         short,
         leverage,
-        tradeStartUnix
+        tradeStartUnix,
+        updatedTime,
       );
 
       positions.push(position)
