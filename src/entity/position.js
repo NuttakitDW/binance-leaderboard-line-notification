@@ -1,3 +1,4 @@
+const Status = require("../constant/enum");
 /**
  * Represents a trading position.
  * @class
@@ -6,6 +7,7 @@ class Position {
   /**
    * Create a new Position instance.
    * @param {string} symbol - The trading symbol.
+   * @param {string} status - The trading status.
    * @param {number} entryPrice - The entry price of the position.
    * @param {number} markPrice - The mark price of the position.
    * @param {number} pnl - The profit and loss of the position.
@@ -16,9 +18,11 @@ class Position {
    * @param {boolean} short - Indicates if the position is short.
    * @param {number} leverage - The leverage used in the position.
    * @param {number} tradeStart - The unix time of the position.
+   * @param {number} updatedTime - The unix time of the updatedTime.
    */
   constructor(
     symbol,
+    status,
     entryPrice,
     markPrice,
     pnl,
@@ -28,9 +32,11 @@ class Position {
     long,
     short,
     leverage,
-    tradeStart
+    tradeStart,
+    updatedTime
   ) {
     this.symbol = symbol;
+    this.status = status;
     this.entryPrice = entryPrice;
     this.markPrice = markPrice;
     this.pnl = pnl;
@@ -41,6 +47,7 @@ class Position {
     this.short = short;
     this.leverage = leverage;
     this.tradeStart = tradeStart;
+    this.updatedTime = updatedTime;
   }
 }
 
