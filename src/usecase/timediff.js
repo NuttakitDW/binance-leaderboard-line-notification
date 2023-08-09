@@ -1,10 +1,21 @@
 /**
  * @param {number} unixTimestamp
+ * @returns {number}
+ */
+function timeDiffFromUnixTimestamp(unixTimestamp) {
+    const now = Date.now() / 1000; // Convert current time to Unix timestamp in seconds
+    const diffInSeconds = Math.floor(now - unixTimestamp/1000);
+  
+    return diffInSeconds
+}
+
+/**
+ * @param {number} unixTimestamp
  * @returns {string}
  */
 function timeAgoFromUnixTimestamp(unixTimestamp) {
-    const now = Date.now() / 1000; // Convert current time to Unix timestamp in seconds
-    const diffInSeconds = Math.floor(now - unixTimestamp/1000);
+    const now = Date.now(); // Convert current time to Unix timestamp in seconds
+    const diffInSeconds = Math.floor((now - unixTimestamp)/1000);
   
     if (diffInSeconds >= 3600) {
       const diffInHours = Math.floor(diffInSeconds / 3600);
@@ -15,6 +26,6 @@ function timeAgoFromUnixTimestamp(unixTimestamp) {
     } else {
       return `${diffInSeconds} sec${diffInSeconds !== 1 ? 's' : ''} ago`;
     }
-  }
+}
 
-  module.exports = timeAgoFromUnixTimestamp;
+  module.exports = timeAgoFromUnixTimestamp, timeDiffFromUnixTimestamp;
