@@ -1,4 +1,4 @@
-const SEC = 3600
+const SEC = 1
 const MIN = 60 * SEC
 const HOUR = 60 * MIN
 const DAY = 24 * HOUR
