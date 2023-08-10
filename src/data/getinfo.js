@@ -7,7 +7,6 @@ require("dotenv").config();
  * @returns {Info}
  */
 async function getInfo(uid) {
-  console.log("getInfo")
   const options = {
     method: "GET",
     url: process.env.INFO_URL,

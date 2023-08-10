@@ -30,7 +30,6 @@ async function updatePosition(trader, positions) {
     }
 
     for (let symbol in trader.positions) {
-      console.log(trader.positions[symbol])
       if (!activePositions.includes(symbol)) {
         const now = Date.now();
 

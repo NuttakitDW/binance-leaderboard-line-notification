@@ -8,7 +8,6 @@ require("dotenv").config();
  * @returns {Position[]}
  */
 async function getPosition(uid) {
-  console.log("getPosition")
   const options = {
     method: "GET",
     url: process.env.POSITION_URL,

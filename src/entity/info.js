@@ -1,5 +1,5 @@
 /**
- * Represents a trading position.
+ * Represents a trader info.
  * @class
  */
 class Info {
