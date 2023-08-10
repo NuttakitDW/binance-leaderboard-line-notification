@@ -56,6 +56,6 @@ async function startWorker() {
 const sec = 1000;
 const min = sec * 60;
 const interval = parseInt(process.env.INTERVAL, 10);
-setInterval(startWorker, sec * 10);
+setInterval(startWorker, min * interval);
 
 module.exports = startWorker;
