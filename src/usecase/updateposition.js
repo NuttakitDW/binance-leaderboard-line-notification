@@ -21,7 +21,7 @@ async function updatePosition(trader, positions) {
       const timestamp = position.tradeStart;
       const timeDiff = timeDiffFromUnixTimestamp(timestamp);
 
-      if (!trader.positions.hasOwnProperty(symbol) && timeDiff <= 100 * MIN) {
+      if (!trader.positions.hasOwnProperty(symbol) && timeDiff < 60 * MIN) {
         const msg = await generateMessage(trader, position);
         messages.push(msg);
       }
@@ -30,6 +30,7 @@ async function updatePosition(trader, positions) {
     }
 
     for (let symbol in trader.positions) {
+      console.log(trader.positions[symbol])
       if (!activePositions.includes(symbol)) {
         const now = Date.now();
 

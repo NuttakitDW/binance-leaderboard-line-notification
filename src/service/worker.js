@@ -17,7 +17,6 @@ async function startWorker() {
     const positions = await getPosition(trader.encryptedUid);
 
     console.log(`nonActiveCount: ${nonActiveCount}`);
-    console.log(`positions: ${trader.positions}`);
 
     if (positions === null && Object.keys(trader.positions).length > 0) {
       const msgs = await closeAllPosition(trader);
